@@ -45,6 +45,7 @@ int _printf(const char *format, ...)
 					i++;
 					str++;
 				}
+				i--;
 			}
 			else if (format[i] == 'd' || format[i] == 'i')
 			{
