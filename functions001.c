@@ -68,7 +68,7 @@ int _write_buffer(char *buffer, unsigned int size)
  */
 int print_integer(char *buffer, int num)
 {
-	unsigned int positiver;
+	unsigned int positive;
 	int count = 0;
 
 	if (num < 0)

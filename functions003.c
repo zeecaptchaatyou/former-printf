@@ -12,7 +12,7 @@
  *
  * Return: ...
  */
-cont char *handle_conversation_specifier(char *buffer, const char *format, va_list args, int *count)
+const char *handle_conversation_specifier(char *buffer, const char *format, va_list args, int *count)
 {
 	char specifier = *format;
 

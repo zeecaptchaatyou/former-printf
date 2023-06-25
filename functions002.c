@@ -35,7 +35,7 @@ int print_hexadecimal(char * buffer, unsigned int num, int uppercase)
 	int count = 0;
 	char *hex_digits;
 
-	hex_digit = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
+	hex_digits = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
 
 	if (num / 16)
 		count += print_hexadecimal(buffer, num / 16, uppercase);
@@ -56,10 +56,10 @@ int print_hexadecimal(char * buffer, unsigned int num, int uppercase)
  */
 const char *print_string(char *buffer, const char *format, va_list args, int *count)
 {
-	char *str = va_args(args, char *);
+	char *str = va_arg(args, char *);
 	int i = 0;
 
-	if (Str == NULL)
+	if (str == NULL)
 		str = "(nill)";
 
 	while (str[i])
@@ -94,7 +94,7 @@ const char *print_string(char *buffer, const char *format, va_list args, int *co
  */
 const char * print_custom_string(char *buffer, const char *format, va_list args, int *count)
 {
-	char *str = va_args(args, char *);
+	char *str = va_arg(args, char *);
 	int i = 0;
 
 	if (str == NULL)
@@ -102,12 +102,12 @@ const char * print_custom_string(char *buffer, const char *format, va_list args,
 
 	while (str[i])
 	{
-		if (str[i] < 32 || str[i] >== 127)
+		if (str[i] < 32 || str[i] >= 127)
 		{
 			*buffer++ = '\\';
 			*buffer++ = 'x';
 			*buffer++ = (str[i] >> 4) + ((str[i] >> 4) < 10 ? '0' : 'A' - 10);
-			*buffer++ + (str[i] & 0x0F) + ((str[i] & 0x0F) < 10 ? '0' : 'A' - 10);
+			*buffer++ = (str[i] & 0x0F) + ((str[i] & 0x0F) < 10 ? '0' : 'A' - 10);
 			*count += 4;
 		}
 		else
