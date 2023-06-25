@@ -38,9 +38,9 @@ return (1);
 */
 int num_length_counter(int n)
 {
+int i = 0, modder = 10, result = 0;
 if (n < 0)
 n *= -1;
-int i = 0, modder = 10, result = 0;
 for ( ; n != result; modder *= 10)
 result = n % modder, i++;
 return (i);

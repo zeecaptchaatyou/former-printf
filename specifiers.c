@@ -55,7 +55,7 @@ _putchar(n + 48);
 }
 
 /**
- * d_to_b - converts a decimal number into a binary number
+ * d_b - converts a decimal number into a binary number
  * @n: decimal number to be converted
  * Return: binary equivalent of n
 */
