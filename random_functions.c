@@ -1,16 +1,6 @@
 #include "main.h"
 
 /**
- * _putchar - prints a character to stdout
- * @c: character to be printed
- * Return: Nada.
- */
-void _putchar(char c)
-{
-(write(1, &c, 1));
-}
-
-/**
  * pow_zee - returns the closest mutiple of 10 below or equal to n
  * @n: dunno what to say bout n
  * Return: multiple of then immediately less than n

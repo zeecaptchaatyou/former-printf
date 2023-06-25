@@ -7,7 +7,7 @@
 */
 void print_char(char c)
 {
-_putchar(c);
+write(1, &c, 1);
 }
 
 /**
@@ -20,7 +20,7 @@ void print_string(char *s)
 size_t i = 0;
 while (s[i])
 {
-_putchar(s[i]);
+write(1, &s[i], 1);
 i++;
 }
 }
@@ -33,10 +33,12 @@ i++;
 void print_int(ssize_t n)
 {
 ssize_t result, temp;
+char c;
 if (n < 0)
 {
 n *= -1;
-_putchar(45);
+c = 45;
+write(1, &c, 1);
 }
 if (n > 9)
 {
@@ -46,12 +48,17 @@ while (temp > 9)
 temp = n % (pow_zee(n));
 result = (n - temp) / pow_zee(n);
 n = temp;
-_putchar(result + 48);
+c = result + 48;
+write(1, &c, 1);
 }
-_putchar(temp + 48);
+c = temp + 48;
+write(1, &c, 1);
 }
 else if (n > 0 && n <= 9)
-_putchar(n + 48);
+{
+c = n + 48;
+write(1, &c, 1);
+}
 }
 
 /**
@@ -62,20 +69,26 @@ _putchar(n + 48);
 void d_b(size_t n)
 {
 size_t bits = (checker(n, 'b'));
+char c;
 if (n == 0)
 {
-_putchar(48);
+c = 48;
+write(1, &c, 1);
 return;
 }
 while (bits >= 1)
 {
 if (n >= bits)
 {
-_putchar(49);
+c = 49;
+write(1, &c, 1);
 n -= bits;
 }
 else if (n < bits)
-_putchar(48);
+{
+c = 48;
+write(1, &c, 1);
+}
 bits >>= 1;
 }
 }

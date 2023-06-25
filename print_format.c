@@ -9,11 +9,15 @@ int _printf(const char *format, ...)
 {
 size_t i = 0;
 va_list ments;
+char c;
 va_start(ments, format);
 for ( ; format[i]; i++)
 {
 if (format[i] != '%')
-_putchar(format[i]);
+{
+c = format[i];
+write(1, &c, 1);
+}
 else
 {
 if (format[i] == '%')
