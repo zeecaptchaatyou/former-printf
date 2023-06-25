@@ -78,5 +78,4 @@ else if (n < bits)
 _putchar(48);
 bits >>= 1;
 }
-_putchar('\n');
 }
