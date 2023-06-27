@@ -1,74 +1,93 @@
 #include "main.h"
 
-/**
- * pow_zee - returns the closest mutiple of 10 below or equal to n
- * @n: dunno what to say bout n
- * Return: multiple of then immediately less than n
-*/
-int pow_zee(int n)
-{
-int tens = 1, temp = 11;
-if (n > 10)
-{
-while (temp > 10)
-{
-temp = n / tens, tens *= 10;
-}
-return (tens / 10);
-}
-else
-return (1);
-}
 
 /**
- * num_length_counter - its name says it all....created for the sole
- * purpose of conveting an integer into a string....yunno, for malloc
- * @n: number whose digit(s) are/is to be counted
- * Return: the length ofc
+ * _u_itoa - converts its unsigned argument number into the
+ * specified base and converts the
+ * result into a string
+ * @n: number to be toyed with
+ * @base: base to which n is to be converted
+ * Return: pointer to the result string
 */
-int num_length_counter(int n)
+char *_u_itoa(size_t n, int base)
 {
-int i = 0, modder = 10, result = 0;
-if (n < 0)
-n *= -1;
-for ( ; n != result; modder *= 10)
-result = n % modder, i++;
-return (i);
+int j = 0, i = 0, rem = 0;
+int len = ((sizeof(char) * sizeof(int) * 8) + 1); /*max len of result*/
+char temp, *str = (char *)malloc(len * sizeof(char));
+/*save some seat for str using max length's vip card*/
+if (str == NULL) /*but what if the card is fake?*/
+{
+free(str);
+return (NULL);
 }
-
-/**
- * _strlen - returns the length of a string
- * @s: string to be counted
- * Return: length of s.
-*/
-int _strlen(char *s)
+if (n == 0) /*and what if the seat saved isn't even needed?*/
 {
-size_t i = 0;
-while (s[i])
-i++;
-return (i);
+str[i++] = 48, str[i] = '\0';
+return (str);
+}
+/*Now, let's do some conversion!*/
+while (n != 0)
+{
+rem = n % base;
+str[i++] = (rem > 9) ? (rem - 10) + 97 : rem + 48;
+n /= base;
+}
+/*and some string reversal*/
+for ( ; j < (i / 2); j++)
+{
+temp = str[j];
+str[j] = str[i - j - 1];
+str[i - j - 1] = temp;
+}
+str[i] = '\0';
+return (str);
 }
 
 
 /**
- * checker - checks for the nearest multiple of the base below n
- * (I must've been high when I wrote this, lmaooo)
- * (I'll still add more to this...when I have other specifiers to check for)
- * @n: number to be checked for
- * @base: specifies the base
- * Return: nearest multiple
+ * _itoa - converts its argument number into the specified base and
+ * converts the result into a string
+ * @n: number to be toyed with
+ * @base: base to which n is to be converted
+ * Return: pointer to the result string
 */
-size_t checker(size_t n, char base)
+char *_itoa(ssize_t n, int base)
 {
-size_t nearest = 1;
-if (n == 0)
-return (0);
-switch (base)
+int negativity = 0, j = 0, i = 0, rem = 0;
+/*max length the result could have*/
+int len = ((sizeof(char) * sizeof(int) * 8) + 1);
+/*save some seat for str using len's vip card*/
+char temp, *str = (char *)malloc(len * sizeof(char));
+if (str == NULL) /*but what if the card is fake?*/
 {
-case 'b':
-while (nearest <= n)
-nearest <<= 1;
-return (nearest >> 1);
-default: return (0);
+free(str);
+return (NULL);
 }
+if (n == 0) /*and what if the seat saved isn't even needed?*/
+{
+str[i++] = 48, str[i] = '\0';
+return (str);
+}
+/*-tive guests from the tenth row need to be taken care of*/
+if (n < 0 && base == 10)
+negativity = 1, n *= -1;
+/*Now, let's do some effing conversion!*/
+while (n != 0)
+{
+rem = n % base;
+str[i++] = (rem > 9) ? (rem - 10) + 97 : rem + 48;
+n /= base;
+}
+/*sooo, was n negative? let's check and take neccessary action(s)*/
+if (negativity)
+str[i++] = 45;
+/*now, let's do some string reversal*/
+for ( ; j < (i / 2); j++)
+{
+temp = str[j];
+str[j] = str[i - j - 1];
+str[i - j - 1] = temp;
+}
+str[i] = '\0';
+return (str);
 }
