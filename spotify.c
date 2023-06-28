@@ -5,7 +5,7 @@
  * @c: conversion specifier
  * Return: pointer to a function that takes an int as arg and returns void
 */
-void (*i_spotify(char c))(ssize_t)
+size_t (*i_spotify(char c))(ssize_t, size_t)
 {
 int i = 0;
 
@@ -29,7 +29,7 @@ return (NULL);
  * Return: pointer to specific pointer associated
  * with the specifier identified
 */
-void (*ui_spotify(char c))(size_t)
+size_t (*ui_spotify(char c))(size_t, size_t)
 {
 int i = 0;
 

@@ -7,14 +7,16 @@
 */
 int _printf(const char *format, ...)
 {
-size_t i = 0, count = 0;
-void (*spec_ptr)(ssize_t), (*uspec_ptr)(size_t);
-char c;
+size_t i, len, (*spec_ptr)(ssize_t, size_t), (*uspec_ptr)(size_t, size_t);
+char c, *err_msg = "(null)";
 va_list ments;
 va_start(ments, format);
 if (format == NULL)
+{
+write(1, err_msg, _strlen(err_msg));
 return (0);
-for ( ; format[i]; i++, count++)
+}
+for (i = 0, len = 0; format[i]; i++)
 {
 c = format[i];
 if (c == '%')
@@ -25,24 +27,24 @@ if (c == 'd' || c == 'i')
 {
 spec_ptr = i_spotify(c);
 if (spec_ptr != NULL)
-spec_ptr(va_arg(ments, int));
+len = spec_ptr(va_arg(ments, int), len);
 }
 else if (c == 'b' || c == 'x' || c == 'X' || c == 'o' || c == 'u')
 {
 uspec_ptr = ui_spotify(c);
 if (uspec_ptr != NULL)
-uspec_ptr(va_arg(ments, unsigned int));
+len = uspec_ptr(va_arg(ments, unsigned int), len);
 }
 else if (c == 's')
-print_string(va_arg(ments, char*));
+len = print_string(va_arg(ments, char*), len);
 else if (c == '%')
-write(1, &c, 1);
+write(1, &c, 1), len += 1;
 else if (c == 'c')
-print_char(va_arg(ments, int));
+len = print_char(va_arg(ments, int), len);
 }
 else
-write(1, &c, 1);
+write(1, &c, 1), len += 1;
 }
 va_end(ments);
-return (count);
+return (len);
 }
