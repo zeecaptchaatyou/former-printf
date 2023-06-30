@@ -35,9 +35,10 @@ int i = 0;
 u_int_spec uspecs[] = {
 {'b', print_binary},
 {'o', print_octal},
-{'x', print_h_decimal},
-{'X', print_uppercase_h_decimal},
 {'u', print_u_int},
+{'x', print_h_decimal},
+{'p', print_pointer},
+{'X', print_uppercase_h_decimal},
 {'\0', NULL}
 };
 while (uspecs[i].c != '\0')
@@ -62,6 +63,7 @@ str_spec string_spec[] = {
 {'s', print_string},
 {'R', print_rot},
 {'r', print_reverse},
+{'S', print_customstr},
 {'\0', NULL}
 };
 

@@ -9,6 +9,7 @@
 #include <limits.h>
 #include <stddef.h>
 #include <sys/types.h>
+#include <wchar.h>
 #define BUFF_SIZE 1024
 
 size_t print_binary(size_t n, size_t count);
@@ -21,8 +22,9 @@ size_t print_rot(char *s, size_t count);
 size_t print_uppercase_h_decimal(size_t n, size_t count);
 size_t print_u_int(size_t n, size_t count);
 size_t print_reverse(char *s, size_t count);
+size_t print_customstr(char *s, size_t count);
+size_t print_pointer(size_t n, size_t count);
 
-int print_pointer(va_list ments, char buffer[]);
 size_t (*i_spotify(char c))(ssize_t n, size_t count);
 char *_strcpy(char *dest, const char *src);
 ssize_t checker(ssize_t n, char base);

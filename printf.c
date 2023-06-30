@@ -22,11 +22,11 @@ if (c == 'd' || c == 'i')
 {spec_ptr = i_spotify(c);
 if (spec_ptr != NULL)
 len = spec_ptr(va_arg(ments, int), len); }
-else if (c == 'b' || c == 'x' || c == 'X' || c == 'o' || c == 'u')
+else if (c == 'b' || c == 'x' || c == 'X' || c == 'o' || c == 'u' || c == 'p')
 {uspec_ptr = ui_spotify(c);
 if (uspec_ptr != NULL)
 len = uspec_ptr(va_arg(ments, unsigned int), len); }
-else if (c == 's' || c == 'R' || c == 'r')
+else if (c == 's' || c == 'R' || c == 'r' || c == 'S')
 {strspec_ptr = str_spotify(c);
 if (strspec_ptr != NULL)
 len = strspec_ptr(va_arg(ments, char *), len); }
@@ -38,11 +38,3 @@ else
 write(1, &c, 1), len += 1; }
 va_end(ments);
 return (len); }
-
-int main (void)
-{
-
-_printf("%");
-
-return (0);
-}
