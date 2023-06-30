@@ -3,7 +3,7 @@
 /**
  * i_spotify - full meaning is "spot specifier", you grab
  * @c: conversion specifier
- * Return: pointer to a function that takes an int as arg and returns void
+ * Return: pointer to function spotted
 */
 size_t (*i_spotify(char c))(ssize_t, size_t)
 {
@@ -25,9 +25,8 @@ return (NULL);
 
 /**
  * ui_spotify - spots the function for unsigned data types
- * @c: specifier to be spotted
- * Return: pointer to specific pointer associated
- * with the specifier identified
+ * @c: specifier whose function is to be identified
+ * Return: pointer to function spotted
 */
 size_t (*ui_spotify(char c))(size_t, size_t)
 {
@@ -45,6 +44,31 @@ while (uspecs[i].c != '\0')
 {
 if (c == uspecs[i].c)
 return (uspecs[i].specify);
+i++;
+}
+return (NULL);
+}
+
+/**
+ * str_spotify - spots functions for the string associated specifiers
+ * @c: specifier whose function is to be identifed
+ * Return: pointer to function spotted
+*/
+size_t (*str_spotify(char c))(char *, size_t)
+{
+int i = 0;
+
+str_spec string_spec[] = {
+{'s', print_string},
+{'R', print_rot},
+{'r', print_reverse},
+{'\0', NULL}
+};
+
+while (string_spec[i].c != '\0')
+{
+if (c == string_spec[i].c)
+return (string_spec[i].specify);
 i++;
 }
 return (NULL);

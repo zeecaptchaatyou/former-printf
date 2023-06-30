@@ -24,7 +24,7 @@ int print_pointer(va_list ments, char buffer[])
 
 	while (num_addrs > 0)
 	{
-		buffer[ind--] = map[num_addrs % 16];
+		buffer[index--] = map[num_addrs % 16];
 		num_addrs /= 16;
 		length++
 	}
@@ -38,7 +38,7 @@ int print_pointer(va_list ments, char buffer[])
 	}
 	index++;
 
-	return (write_pointer(buffer, index, length, padd, extar_char, padd_start));
+	return (write_pointer(buffer, index, length, padd, extra_char, padd_start));
 }
 
 /**
@@ -60,7 +60,7 @@ int write_pointer(char buffer[], int index, int length, char padd,
 
 	if (padd != ' ')
 	{
-		for (i = 3; i < legth + 3; i++)
+		for (i = 3; i < length + 3; i++)
 			buffer[i] = padd;
 		buffer[i] = '\0';
 
@@ -76,6 +76,12 @@ int write_pointer(char buffer[], int index, int length, char padd,
 	buffer[--index] = 'x';
 	buffer[--index] = '0';
 	if (extra_char)
-		buffer[--index] = extar_char;
-	return (write(1, &buffer[index], BUFF_SIZE - ind - 1));
+		buffer[--index] = extra_char;
+	return (write(1, &buffer[index], BUFF_SIZE - index - 1));
+}
+
+int main(void)
+{
+int zee = 23;
+int p = print_pointer(&zee);
 }

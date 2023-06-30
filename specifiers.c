@@ -22,10 +22,8 @@ size_t print_string(char *s, size_t count)
 {
 size_t i = 0;
 char c;
-char *err_msg = "(null)";
 if (s == NULL)
 {
-write(2, err_msg, _strlen(err_msg));
 return (0);
 }
 while (s[i])
