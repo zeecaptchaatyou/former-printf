@@ -74,17 +74,21 @@ return (count);
 */
 size_t print_customstr(char *s, size_t count)
 {
-size_t i = 0;
-char c;
-for ( ; s[i]; i++, count++)
+size_t i = 0, n, j = 0;
+char c, *str;
+for (i = 0; s[i]; i++)
 {
 if ((s[i] > 0 && s[i] < 32) || s[i] >= 127 || s[i] < 0)
 {
-c = '\\', write(1, &c, 1);
-c = 'x', write(1, &c, 1);
+c = '\\', write(1, &c, 1), count += 1;
+c = 'x', write(1, &c, 1), count += 1;
+n = s[i], str = S_u_itoa(n, 16);
+c = '0', write(1, &c, 1), count += 1;
+for (j = 0; str[j]; j++)
+c = str[j], write(1, &c, 1), count += 1;
 }
 else
-c = s[i], write(1, &c, 1);
+c = s[i], write(1, &c, 1), count += 1;
 }
 return (count);
 }
@@ -99,13 +103,14 @@ size_t print_pointer(size_t n, size_t count)
 {
 int i = 0;
 char *str, c;
-
+printf("\nn = %lx\n", n);
 str = _u_itoa(n, 16);
 if (str == NULL)
 {
 free(str);
 return (0);
 }
+printf("str = %s\n", str);
 c = '0', write(1, &c, 1);
 c = 'x', write(1, &c, 1);
 while (str[i])

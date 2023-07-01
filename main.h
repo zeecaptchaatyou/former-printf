@@ -10,6 +10,7 @@
 #include <stddef.h>
 #include <sys/types.h>
 #include <wchar.h>
+#include <stddef.h>
 #define BUFF_SIZE 1024
 
 size_t print_binary(size_t n, size_t count);
@@ -42,6 +43,11 @@ int _printf(const char *format, ...);
 size_t (*str_spotify(char c))(char *s, size_t count);
 size_t (*ui_spotify(char c))(size_t n, size_t count);
 void recurse(char *s);
+int sort(char c);
+int check_format(char *s, size_t i);
+char *S_u_itoa(size_t n, int base);
+
+
 
 /**
  * struct int_specifiers - don't mind us
